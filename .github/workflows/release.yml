@@ -23,6 +23,17 @@ jobs:
       - name: Run tests
         run: go test -race ./...
 
+      - name: Check HOMEBREW_TAP_GITHUB_TOKEN is set
+        run: |
+          if [ -z "${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}" ]; then
+            echo "::error::HOMEBREW_TAP_GITHUB_TOKEN secret is NOT set!"
+            exit 1
+          else
+            echo "HOMEBREW_TAP_GITHUB_TOKEN is set (length: ${#HOMEBREW_TAP_GITHUB_TOKEN})"
+          fi
+        env:
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
