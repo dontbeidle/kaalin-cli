@@ -43,7 +43,8 @@ changelog:
       - "^ci:"
 
 brews:
-  - repository:
+  - name: kaalin
+    repository:
       owner: dontbeidle
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
