@@ -1,70 +1,77 @@
-# kaalin-cli
+# kaalin
 
-A CLI tool for the Karakalpak language. Convert text between Latin and Cyrillic scripts, turn numbers into words, and change letter casing — all with proper Karakalpak alphabet support.
+CLI tool for the Karakalpak language. Script conversion, numbers to words, letter casing.
 
 ## Install
-
-### Homebrew (macOS / Linux)
 
 ```bash
 brew tap dontbeidle/tap
 brew install kaalin
 ```
 
-## Usage
+## Convert
 
-### Convert text between scripts
+Latin to Cyrillic:
 
 ```bash
-# Latin to Cyrillic (auto-detected)
 kaalin convert "Assalawma áleykum"
-# → Ассалаўма әлейкум
+# Ассалаўма әлейкум
+```
 
-# Cyrillic to Latin (auto-detected)
+Cyrillic to Latin:
+
+```bash
 kaalin convert "Ассалаўма әлейкум"
-# → Assalawma áleykum
+# Assalawma áleykum
+```
 
-# Explicit direction
+Explicit direction:
+
+```bash
 kaalin convert --to-cyr "Sálem"
 kaalin convert --to-lat "Сәлем"
+```
 
-# Pipe
-echo "Sálem" | kaalin convert
+From file:
 
-# File input/output
+```bash
 kaalin convert -f document.txt -o converted.txt
-
-# Edit file in place
 kaalin convert -f document.txt --in-place
 ```
 
-### Numbers to words
+Pipe:
+
+```bash
+echo "Sálem" | kaalin convert
+```
+
+## Number to words
 
 ```bash
 kaalin number 123
-# → bir júz jigirma úsh
+# bir júz jigirma úsh
 
 kaalin number 123 --cyr
-# → бир жүз жигирма үш
+# бир жүз жигирма үш
 
 kaalin number 12.75
-# → on eki pútin júzden jetpis bes
+# on eki pútin júzden jetpis bes
 
 kaalin number -5
-# → minus bes
+# minus bes
 ```
 
-### Change case
+## Case
 
 ```bash
 kaalin case upper "sálem álem"
-# → SÁLEM ÁLEM
+# SÁLEM ÁLEM
 
 kaalin case lower "SÁLEM ÁLEM"
-# → sálem álem
+# sálem álem
 ```
 
-### Shell completion
+## Shell completion
 
 ```bash
 kaalin completion bash >> ~/.bashrc
@@ -80,7 +87,4 @@ kaalin completion powershell >> $PROFILE
 | `--help` | `-h` | Show help |
 | `--json` | `-j` | Output as JSON |
 | `--no-color` | — | Disable colored output |
-| `--quiet` | `-q` | Only print the result |
-
-The `NO_COLOR` environment variable is also respected.
-
+| `--quiet` | `-q` | Print result only |
